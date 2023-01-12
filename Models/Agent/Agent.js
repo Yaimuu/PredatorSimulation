@@ -93,9 +93,13 @@ class Agent {
 
     seek(target=undefined)
 	{
-        this.body.acc.add(p5.Vector.sub(target, this.getPos()));
-		this.body.acc.mult(this.body.force);
-		this.body.velocity.mult(this.body.force);
+        if(target != undefined)
+        {
+            this.body.acc.add(p5.Vector.sub(target, this.getPos()));
+            this.body.acc.mult(this.body.force);
+            this.body.velocity.mult(this.body.force);
+        }
+        
 	}
 
 	flee(target, radius = 50)
@@ -123,18 +127,28 @@ class Agent {
 
     filtrePerception() {
         this.perception.forEach(target => {
-            if(target.getStatus() == Status.DEAD)
-            {
-                if(this.targetReached(target))
-                    this.body.eat(target);
-                this.seek(target);
-            }
+            // if(target.getStatus() == Status.DEAD)
+            // {
+            //     if(this.targetReached(target))
+            //         this.body.eat(target);
+            //     this.seek(target.getPos());
+            // }
 
             if(this.fleeingRange > this.getPos().dist(target.getPos()))
             {
                 this.flee(target.getPos());
             }
         });
+    }
+
+    reproduce() {
+        if(this.getReproduction().value >= this.getReproduction().max)
+        {
+            this.getReproduction().value = 0;
+            return true;
+        }
+        else
+            return false;
     }
 
     move() {
@@ -200,6 +214,10 @@ class Agent {
 
     getType() {
         return this.body.getType();
+    }
+
+    getReproduction() {
+        return this.body.reproduction;
     }
 
     addToPerception(target)

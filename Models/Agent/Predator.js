@@ -9,5 +9,27 @@ class Predator extends Agent {
         this.body.updateTypeColor();
     }
 
+    filtrePerception() {
+        this.perception.forEach(target => {
+            let targetPos = target.getPos();
+            
+            if(target.getType() == AgentType.SUPERPREDATOR)
+            {
+                this.flee(targetPos);
+            }
+            if(target.getType() != AgentType.DECOMPOSOR)
+            {
+                if(this.targetReached(target))
+                    this.body.eat(target);
+                this.seek(targetPos);
+            }
 
+            
+
+            if(this.fleeingRange > this.getPos().dist(targetPos))
+            {
+                this.flee(targetPos);
+            }
+        });
+    }
 }

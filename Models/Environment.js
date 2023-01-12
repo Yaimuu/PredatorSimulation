@@ -46,6 +46,25 @@ class Environment {
         });
     }
 
+    updateEaten() {
+        this.agentList.forEach(agent => {
+            
+            
+            if(agent.getStatus() == Status.EATEN)
+            {
+                this.agentList.splice(this.agentList.indexOf(agent), 1);
+            }
+            
+        });
+
+        this.itemList.forEach(item => {
+            if(item.getStatus() == Status.EATEN)
+            {
+                this.itemList.splice(this.itemList.indexOf(item), 1);
+            }
+        });
+    }
+
     run() {
         this.agentList.forEach(agent1 => {
             agent1.perception = [];
@@ -62,6 +81,8 @@ class Environment {
                 }
             });
         });
+
+        this.updateEaten();
 
         this.show();
 

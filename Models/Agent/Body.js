@@ -17,10 +17,7 @@ class Body extends Entity {
         this.hunger = {value: 0, max: random(100, 200), eatThreshold: random(10, 50)};
         this.tired = {value: 0, max: random(100, 200), activeThreshold: random(10, 50)};
         this.reproduction = {value: 0, max: 100};
-        this.life = {birth: 0, lifespan: random(200, 300), age: 0}
-
-        
-        
+        this.life = {birth: 0, lifespan: random(200, 300), age: 0};
     }
 
     move(target=undefined)
@@ -38,6 +35,8 @@ class Body extends Entity {
 
     eat(target)
     {
+        if(target.getType() == AgentType.DECOMPOSOR)
+            return;
         target.setStatus(Status.EATEN);
         this.reproduction.value += target.getMass() / 2;
     }
