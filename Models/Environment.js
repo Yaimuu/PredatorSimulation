@@ -9,7 +9,7 @@ class Environment {
         this.duration = 0;
     }
 
-    generateMap(nbAgents=50, nbItems=50) {
+    generateMap(nbAgents=100, nbItems=50) {
         
         for (let i = 0; i < nbAgents; i++) {
             let type = random([AgentType.DECOMPOSOR,AgentType.HERBIVOR,AgentType.PREDATOR,AgentType.SUPERPREDATOR]);
@@ -48,6 +48,16 @@ class Environment {
 
     updateEaten() {
         this.agentList.forEach(agent => {
+            agent.children.forEach(child => {
+                if(child)
+                {
+                    if(child.getStatus() == Status.NEWBORN)
+                    {
+                        child.setStatus(Status.ACTIVE);
+                        this.agentList.push(child);
+                    }
+                }
+            });
             
             
             if(agent.getStatus() == Status.EATEN)

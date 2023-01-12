@@ -20,14 +20,14 @@ class Herbivor extends Agent {
             if(target.getType() == AgentType.VEGETAL)
             {
                 if(this.targetReached(target))
-                    this.body.eat(target);
+                    this.eat(target);
                 this.seek(targetPos);
             }
 
-            if(this.fleeingRange > this.getPos().dist(targetPos))
-            {
-                this.flee(targetPos);
-            }
+            // if(this.fleeingRange > this.getPos().dist(targetPos))
+            // {
+            //     this.flee(targetPos);
+            // }
         });
     }
 }

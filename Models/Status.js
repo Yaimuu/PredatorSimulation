@@ -3,4 +3,5 @@ const Status = {
 	SLEEPING: Symbol("sleeping"),
 	DEAD: Symbol("dead"),
 	EATEN: Symbol("eaten"),
+	NEWBORN: Symbol("newborn"),
 }

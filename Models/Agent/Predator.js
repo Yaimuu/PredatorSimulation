@@ -20,7 +20,7 @@ class Predator extends Agent {
             if(target.getType() == AgentType.HERBIVOR)
             {
                 if(this.targetReached(target))
-                    this.body.eat(target);
+                    this.eat(target);
                 this.seek(targetPos);
             }
 

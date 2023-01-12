@@ -16,15 +16,19 @@ class Superpredator extends Agent {
             if(target.getType() == AgentType.PREDATOR)
             {
                 if(this.targetReached(target))
-                    this.body.eat(target);
+                    this.eat(target);
                 this.seek(targetPos);
             }
             
-
-            if(this.fleeingRange > this.getPos().dist(targetPos))
+            if(target.type == AgentType.SUPERPREDATOR)
             {
-                this.flee(targetPos);
+                this.followTarget(targetPos);
+                if(this.fleeingRange > this.getPos().dist(targetPos))
+                {
+                    this.flee(targetPos);
+                }
             }
+            
         });
     }
 }

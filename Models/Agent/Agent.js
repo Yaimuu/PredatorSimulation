@@ -1,12 +1,13 @@
 class Agent {
-    constructor(widthLimit=800, heigthLimit=600) {
+    constructor(widthLimit=800, heigthLimit=600, parent=undefined) {
 
         this.limits = {
             width: widthLimit,
             heigth: heigthLimit
         }
-        
-        this.body = new Body(this.limits.width, this.limits.heigth);
+        this.parent = parent;
+        this.children = [];
+        this.body = new Body(this.limits.width, this.limits.heigth, parent ? parent : undefined);
         this.target = undefined;
 
         // Offset vector to generate a perlin noise related to the wandering velocity
@@ -14,8 +15,17 @@ class Agent {
         // Vector used to randomize the body's velocity
         this.wanderVelocity = createVector(0, 0);
 
-        this.range = 100 + this.getMass();
-        this.fleeingRange = 30 + this.getMass();
+        if(this.parent)
+        {
+            this.range = this.parent.range + random(-1, 1);
+            this.fleeingRange = this.parent.fleeingRange + random(-1, 1);
+        }
+        else
+        {
+            this.range = 100 + this.getMass();
+            this.fleeingRange = 30 + this.getMass();
+        }
+        
         this.fustrum = new Fustrum();
         // this.perception = [];
         // this.followList = [];
@@ -91,13 +101,29 @@ class Agent {
         
     }
 
+    eat(target)
+    {
+        if(target.getType() == AgentType.DECOMPOSOR)
+            return;
+        target.setStatus(Status.EATEN);
+        this.body.reproduction.value += target.getMass() / 2;
+        if(this.body.reproduction.value >= this.body.reproduction.max)
+        {
+            let newChild = new Agent(widthLimit, heigth, this);
+            newChild.setStatus(Status.NEWBORN);
+            this.children.push(newChild);
+            this.body.reproduction.value = 0;
+            console.log(newChild);
+        }
+    }
+
     seek(target=undefined)
 	{
         if(target != undefined)
         {
             this.body.acc.add(p5.Vector.sub(target, this.getPos()));
             this.body.acc.mult(this.body.force);
-            this.body.velocity.mult(this.body.force);
+            this.body.velocity.mult(this.body.acc);
         }
         
 	}
@@ -123,6 +149,12 @@ class Agent {
             this.body.velocity.add(meanDir);
         }
         // this.body.force = 1 / this.getPos().dist(target);
+    }
+
+    followTarget(target) {
+        if(target != undefined) {
+            this.body.velocity.add(target.getVelocity());
+        }
     }
 
     filtrePerception() {

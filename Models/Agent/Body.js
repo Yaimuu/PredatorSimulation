@@ -1,27 +1,46 @@
 class Body extends Entity {
 
-    constructor(widthLimit=800, heigthLimit=600) {
+    constructor(widthLimit=800, heigthLimit=600, parentBody=undefined) {
         super(widthLimit, heigthLimit);
+
+        this.parentBody = parentBody;
         
         this.defaultColor = color(150);
         this.statusColor = this.defaultColor;
 
         this.velocity = createVector(random(5), random(5));
         this.acc = createVector(0, 0);
-        this.maxVelo = 2.5;
-        this.maxAcc = 5;
         
         this.force = 0.001;
 		this.maxForce = 0.01;
 
-        this.hunger = {value: 0, max: random(100, 200), eatThreshold: random(10, 50)};
-        this.tired = {value: 0, max: random(100, 200), activeThreshold: random(10, 50)};
-        this.reproduction = {value: 0, max: 100};
-        this.life = {birth: 0, lifespan: random(200, 300), age: 0};
+        if(this.parentBody)
+        {
+            this.maxVelo = this.parentBody + random(-0.5, 0.5);
+            this.maxAcc = this.parentBody + random(-0.5, 0.5);
+
+            this.hunger = {value: 0, max: this.parentBody + random(-5, 5), eatThreshold: this.parentBody + random(-1, 1)};
+            this.tired = {value: 0, max: this.parentBody + random(-5, 5), activeThreshold: this.parentBody + random(-1, 1)};
+            this.reproduction = {value: 0, max: this.parentBody + random(-5, 5)};
+            this.life = {birth: 0, lifespan: this.parentBody + random(-5, 5), age: 0};
+        }
+        else 
+        {
+            this.maxVelo = random(1,5);
+            this.maxAcc = random(1,5);
+
+            this.hunger = {value: 0, max: random(100, 200), eatThreshold: random(10, 50)};
+            this.tired = {value: 0, max: random(100, 200), activeThreshold: random(10, 50)};
+            this.reproduction = {value: 0, max: 100};
+            this.life = {birth: 0, lifespan: random(200, 300), age: 0};
+        }
+
+        
     }
 
     move(target=undefined)
 	{
+        this.acc.limit(this.maxAcc);
 		this.velocity.add(this.acc);
         this.velocity.limit(this.maxVelo);
 		// this.velocity.div(this.mass/(this.mass/2));
@@ -32,15 +51,6 @@ class Body extends Entity {
         else
             this.force = 0.01;
 	}
-
-    eat(target)
-    {
-        if(target.getType() == AgentType.DECOMPOSOR)
-            return;
-        target.setStatus(Status.EATEN);
-        this.reproduction.value += target.getMass() / 2;
-    }
-	
 
     updateStatus() {
         switch(this.status)

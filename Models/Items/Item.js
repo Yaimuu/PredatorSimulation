@@ -4,6 +4,7 @@ class Item extends Entity{
 
         this.color = color(0, 255, 0);
         this.type = AgentType.VEGETAL;
+        this.mass = 10;
     }
 
     
