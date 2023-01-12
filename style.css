@@ -1,0 +1,15 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.parameters-container {
+  position: absolute;
+  top: 5em;
+  right: 5em;
+  width: 10%;
+}
