@@ -17,7 +17,7 @@ class Predator extends Agent {
             {
                 this.flee(targetPos);
             }
-            if(target.getType() != AgentType.DECOMPOSOR)
+            if(target.getType() == AgentType.HERBIVOR)
             {
                 if(this.targetReached(target))
                     this.body.eat(target);

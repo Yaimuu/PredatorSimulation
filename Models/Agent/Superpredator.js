@@ -12,8 +12,8 @@ class Superpredator extends Agent {
     filtrePerception() {
         this.perception.forEach(target => {
             let targetPos = target.getPos();
-            
-            if(target.getType() != AgentType.DECOMPOSOR)
+
+            if(target.getType() == AgentType.PREDATOR)
             {
                 if(this.targetReached(target))
                     this.body.eat(target);

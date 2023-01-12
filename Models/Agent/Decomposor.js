@@ -17,6 +17,7 @@ class Decomposor extends Agent {
             {
                 if(this.targetReached(target))
                     this.body.eat(target);
+                    
                 this.seek(target.getPos());
             }
 

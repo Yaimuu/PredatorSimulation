@@ -7,7 +7,7 @@ class Entity {
 
         this.pos = createVector(random(widthLimit - this.mass), random(heigthLimit - this.mass));
 
-        this.type = AgentType.VEGETAL;
+        this.type = AgentType.DECOMPOSOR;
 
         this.status = Status.ACTIVE;
     }

@@ -3,13 +3,8 @@ class Item extends Entity{
         super(widthLimit, heigthLimit);
 
         this.color = color(0, 255, 0);
+        this.type = AgentType.VEGETAL;
     }
 
-    show()
-	{
-        noStroke();
-        // Body
-        fill(this.color);
-        ellipse(this.pos.x, this.pos.y, this.mass * 2);
-	}
+    
 }
