@@ -8,13 +8,13 @@ var environment = new Environment(WIDTH, HEIGTH);
 function setup() {
     createCanvas(WIDTH, HEIGTH);
     environment.generateMap();
-
+    console.log(environment.agentList);
     // background(255, 255, 255);
     // environment.run();
   }
   
   function draw() {
-    background(255, 255, 255);
+    background(32);
     environment.run();
 
     // fill(0);
@@ -26,6 +26,7 @@ function setup() {
   }
   
   function mousePressed() {
+    environment.showGauges(mouseX, mouseY);
     //create a sprite at the mouse position and store it in a temporary variable
     // var s = createSprite(mouseX, mouseY, 30, 30);
     //if no image or animation is associated it will be a rectancle of the specified size

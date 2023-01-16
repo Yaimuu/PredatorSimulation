@@ -14,15 +14,21 @@ class Body extends Entity {
         this.force = 0.001;
 		this.maxForce = 0.01;
 
+        this.showGauges = false;
+
         if(this.parentBody)
         {
-            this.maxVelo = this.parentBody + random(-0.5, 0.5);
-            this.maxAcc = this.parentBody + random(-0.5, 0.5);
+            this.pos = this.parentBody.pos;
+            this.defaultColor = this.parentBody.defaultColor;
+            // console.log(this.parentBody);
+            this.maxVelo = this.parentBody.maxVelo + random(-0.05, 0.05);
+            this.maxAcc = this.parentBody.maxAcc + random(-0.05, 0.05);
 
-            this.hunger = {value: 0, max: this.parentBody + random(-5, 5), eatThreshold: this.parentBody + random(-1, 1)};
-            this.tired = {value: 0, max: this.parentBody + random(-5, 5), activeThreshold: this.parentBody + random(-1, 1)};
-            this.reproduction = {value: 0, max: this.parentBody + random(-5, 5)};
-            this.life = {birth: 0, lifespan: this.parentBody + random(-5, 5), age: 0};
+            this.hunger = {value: 0, max: this.parentBody.hunger.max + random(-5, 5), eatThreshold: this.parentBody.hunger.eatThreshold + random(-1, 1)};
+            this.tired = {value: 0, max: this.parentBody.tired.max + random(-5, 5), activeThreshold: this.parentBody.tired.activeThreshold + random(-1, 1)};
+            this.reproduction = {value: 0, max: this.parentBody.reproduction.max + random(-5, 5)};
+            this.life = {birth: 0, lifespan: this.parentBody.life.lifespan + random(-5, 5), age: 0};
+            this.updateTypeColor();
         }
         else 
         {
@@ -115,6 +121,14 @@ class Body extends Entity {
         fill(this.statusColor);
         ellipse(this.pos.x, this.pos.y, this.mass);
 
+        if(this.showGauges)
+        {
+            this.showGauge(this.hunger.value, this.hunger.max, this.hunger.eatThreshold, color(255,255,0), 1);
+            this.showGauge(this.life.age, this.life.lifespan, undefined, color(255), 2);
+            this.showGauge(this.tired.value, this.tired.max, this.tired.activeThreshold, color(0, 0, 255), 3);
+            this.showGauge(this.reproduction.value, this.reproduction.max, undefined, color(128, 20, 0), 4);
+        }
+        
         this.showVelocity();
 	}
 
@@ -129,6 +143,24 @@ class Body extends Entity {
             this.pos.y + normVelo.y * this.mass );
     }
 
+    showGauge(value, max, threshold, color, order) {
+        let gaugeSize = createVector(50, 10);
+        let gaugePos = createVector(
+            this.getPos().x - gaugeSize.x / 2,
+            this.getPos().y - this.getMass() - order * gaugeSize.y
+            );
+
+        stroke(0);
+        strokeWeight(1);
+        noFill();
+
+        rect(gaugePos.x, gaugePos.y, gaugeSize.x, gaugeSize.y);
+
+        fill(color);
+        noStroke();
+        rect(gaugePos.x, gaugePos.y, gaugeSize.x * (value/max), gaugeSize.y);
+    }
+
     isMoving() {
         return this.status == Status.ACTIVE; 
     }
@@ -136,5 +168,22 @@ class Body extends Entity {
     isDead()
     {
         return this.status == Status.DEAD; 
+    }
+
+    isHungry()
+    {
+        return this.hunger.value >= this.hunger.eatThreshold;
+    }
+
+    updateHunger(massEaten) {
+        if(this.hunger.value - massEaten >= 0)
+        {
+            this.hunger.value -= massEaten;
+        }
+    }
+
+    toggleGauges()
+    {
+        this.showGauges = !this.showGauges;
     }
 }

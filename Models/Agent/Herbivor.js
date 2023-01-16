@@ -17,7 +17,7 @@ class Herbivor extends Agent {
             {
                 this.flee(targetPos);
             }
-            if(target.getType() == AgentType.VEGETAL)
+            if(target.getType() == AgentType.VEGETAL && this.isHungry())
             {
                 if(this.targetReached(target))
                     this.eat(target);

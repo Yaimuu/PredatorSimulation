@@ -7,7 +7,7 @@ class Agent {
         }
         this.parent = parent;
         this.children = [];
-        this.body = new Body(this.limits.width, this.limits.heigth, parent ? parent : undefined);
+        this.body = new Body(this.limits.width, this.limits.heigth, parent ? parent.body : undefined);
         this.target = undefined;
 
         // Offset vector to generate a perlin noise related to the wandering velocity
@@ -106,14 +106,17 @@ class Agent {
         if(target.getType() == AgentType.DECOMPOSOR)
             return;
         target.setStatus(Status.EATEN);
-        this.body.reproduction.value += target.getMass() / 2;
+        this.body.reproduction.value += target.getMass();
+        this.body.updateHunger(target.getMass());
         if(this.body.reproduction.value >= this.body.reproduction.max)
         {
-            let newChild = new Agent(widthLimit, heigth, this);
+            let newChild = new Agent(this.limits.width, this.limits.heigth, this);
             newChild.setStatus(Status.NEWBORN);
+            newChild.body.type = this.getType();
+            newChild.body.defaultColor = this.body.defaultColor;
             this.children.push(newChild);
             this.body.reproduction.value = 0;
-            console.log(newChild);
+            // console.log(newChild);
         }
     }
 
@@ -158,19 +161,8 @@ class Agent {
     }
 
     filtrePerception() {
-        this.perception.forEach(target => {
-            // if(target.getStatus() == Status.DEAD)
-            // {
-            //     if(this.targetReached(target))
-            //         this.body.eat(target);
-            //     this.seek(target.getPos());
-            // }
-
-            if(this.fleeingRange > this.getPos().dist(target.getPos()))
-            {
-                this.flee(target.getPos());
-            }
-        });
+        // this.fustrum.getPerception().forEach(target => {
+        // });
     }
 
     reproduce() {
@@ -255,5 +247,15 @@ class Agent {
     addToPerception(target)
     {
         this.fustrum.perception.push(target);
+    }
+
+    isHungry()
+    {
+        return this.body.isHungry();
+    }
+
+    toggleGauges()
+    {
+        this.body.toggleGauges();
     }
 }

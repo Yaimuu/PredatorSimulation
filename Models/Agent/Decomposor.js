@@ -13,18 +13,19 @@ class Decomposor extends Agent {
 
     filtrePerception() {
         this.perception.forEach(target => {
-            if(target.getStatus() == Status.DEAD)
+            if(target.getStatus() == Status.DEAD && this.isHungry())
             {
+                this.seek(target.getPos());
                 if(this.targetReached(target))
                     this.eat(target);
                     
-                this.seek(target.getPos());
+                
             }
 
-            if(this.fleeingRange > this.getPos().dist(target.getPos()))
-            {
-                this.flee(target.getPos());
-            }
+            // if(this.fleeingRange > this.getPos().dist(target.getPos()))
+            // {
+            //     this.flee(target.getPos());
+            // }
         });
     }
 }

@@ -13,7 +13,7 @@ class Superpredator extends Agent {
         this.perception.forEach(target => {
             let targetPos = target.getPos();
 
-            if(target.getType() == AgentType.PREDATOR)
+            if(target.getType() == AgentType.PREDATOR && this.isHungry())
             {
                 if(this.targetReached(target))
                     this.eat(target);

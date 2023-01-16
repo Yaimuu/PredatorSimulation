@@ -71,6 +71,7 @@ class Environment {
             if(item.getStatus() == Status.EATEN)
             {
                 this.itemList.splice(this.itemList.indexOf(item), 1);
+                this.itemList.push(new Item(this.width, this.heigth));
             }
         });
     }
@@ -101,5 +102,18 @@ class Environment {
 
     exportToJson() {
 
+    }
+
+    showGauges(x, y)
+    {
+        let mousePos = createVector(x,y);
+        let closerAgent = this.agentList[0];
+        this.agentList.forEach(agent => {
+            if(mousePos.dist(closerAgent.getPos()) > mousePos.dist(agent.getPos()))
+            {
+                closerAgent = agent;
+            }
+        });
+        closerAgent.toggleGauges();
     }
 }

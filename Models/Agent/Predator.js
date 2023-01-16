@@ -17,7 +17,7 @@ class Predator extends Agent {
             {
                 this.flee(targetPos);
             }
-            if(target.getType() == AgentType.HERBIVOR)
+            if(target.getType() == AgentType.HERBIVOR && this.isHungry())
             {
                 if(this.targetReached(target))
                     this.eat(target);
@@ -26,10 +26,10 @@ class Predator extends Agent {
 
             
 
-            if(this.fleeingRange > this.getPos().dist(targetPos))
-            {
-                this.flee(targetPos);
-            }
+            // if(this.fleeingRange > this.getPos().dist(targetPos))
+            // {
+            //     this.flee(targetPos);
+            // }
         });
     }
 }
