@@ -9,10 +9,10 @@ class Environment {
         this.duration = 0;
     }
 
-    generateMap(nbAgents=100, nbItems=50) {
+    generateMap(nbAgents=25, nbItems=50) {
         
         for (let i = 0; i < nbAgents; i++) {
-            let type = random([AgentType.DECOMPOSOR,AgentType.HERBIVOR,AgentType.PREDATOR,AgentType.SUPERPREDATOR]);
+            let type = random([AgentType.DECOMPOSOR,AgentType.HERBIVOR,AgentType.PREDATOR/*,AgentType.SUPERPREDATOR*/]);
             switch(type) {
                 case AgentType.DECOMPOSOR:
                     this.agentList.push(new Decomposor(this.width, this.heigth));

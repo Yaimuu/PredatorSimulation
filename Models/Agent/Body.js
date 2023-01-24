@@ -18,7 +18,7 @@ class Body extends Entity {
 
         if(this.parentBody)
         {
-            this.pos = this.parentBody.pos;
+            this.pos = createVector(this.parentBody.pos.x, this.parentBody.pos.y);
             this.defaultColor = this.parentBody.defaultColor;
             // console.log(this.parentBody);
             this.maxVelo = this.parentBody.maxVelo + random(-0.05, 0.05);
@@ -35,10 +35,10 @@ class Body extends Entity {
             this.maxVelo = random(1,5);
             this.maxAcc = random(1,5);
 
-            this.hunger = {value: 0, max: random(100, 200), eatThreshold: random(10, 50)};
+            this.hunger = {value: 0, max: random(400, 500), eatThreshold: random(50, 150)};
             this.tired = {value: 0, max: random(100, 200), activeThreshold: random(10, 50)};
             this.reproduction = {value: 0, max: 100};
-            this.life = {birth: 0, lifespan: random(200, 300), age: 0};
+            this.life = {birth: 0, lifespan: random(1000, 1500), age: 0};
         }
 
         
@@ -94,6 +94,7 @@ class Body extends Entity {
             case Status.DEAD:
             case Status.EATEN:
                 this.color = color(0);
+                this.statusColor = color(0);
                 break;
         }
     }
@@ -106,7 +107,9 @@ class Body extends Entity {
         this.updateStatus();
 
         if(this.isMoving())
+        {
             this.move();
+        }
 
         this.show();
     }
