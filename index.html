@@ -32,6 +32,33 @@
       </div>
 
       <div class="content">
+          <button id="restart" class="uk-button uk-button-default">Restart</button>
+      </div>
+    </div>
+
+    <div id="infos" class="panel">
+      <div class="title" onclick="toggleExpand(this)">
+        <i class='fas fa-angle-right arrow'></i>
+        <span>Infos</span>
+        
+      </div>
+
+      <div class="content">
+        <h3>
+           <span id="nb-agents"></span> <span>Agents</span>
+        </h3>
+        <div>
+          <span>Nb Décomposeurs</span> <span id="nb-decomposors"></span>
+        </div>
+        <div>
+          <span>Nb Herbivores</span> <span id="nb-herbivors"></span>
+        </div>
+        <div>
+          <span>Nb Prédateurs</span> <span id="nb-predators"></span> 
+        </div>
+        <div>
+          <span>Nb Super Prédateurs</span> <span id="nb-superpredators"></span> 
+        </div>
 
       </div>
     </div>

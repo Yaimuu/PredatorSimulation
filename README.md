@@ -4,6 +4,12 @@ La vie artificielle est un champ de recherche interdisciplinaire alliant informa
 
 Dans cet exercice, le but est de créer un vivarium composé de plusieurs espèces.
 
+# Utilisation
+
+Pour lancer la simulation :
+- https://www.yanis-ouled-moussa.fr/playGround/PredatorSimulation/
+- **Click gauche** : Afficher/Cacher les jauges de l'Agent le plus proche
+
 # Agents
 
 - Decomposeurs

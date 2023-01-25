@@ -8,6 +8,10 @@ class Environment {
 
         this.duration = 0;
         this.maxDuration = 3500;
+
+        this.infos = {decomposors: 0, herbivors: 0, predators: 0, superpredators: 0};
+    
+        this.setControls();
     }
 
     generateMap(nbAgents=100, nbItems=50) {
@@ -17,18 +21,22 @@ class Environment {
             switch(type) {
                 case AgentType.DECOMPOSOR:
                     this.agentList.push(new Decomposor(this.width, this.heigth));
+                    this.infos.decomposors++;
                     break;
                 
                 case AgentType.HERBIVOR:
                     this.agentList.push(new Herbivor(this.width, this.heigth));
+                    this.infos.herbivors++;
                     break;
 
                 case AgentType.PREDATOR:
                     this.agentList.push(new Predator(this.width, this.heigth));
+                    this.infos.predators++;
                     break;
                 
                 case AgentType.SUPERPREDATOR:
                     this.agentList.push(new Superpredator(this.width, this.heigth));
+                    this.infos.superpredators++;
                     break;
             }
             
@@ -36,6 +44,16 @@ class Environment {
         for (let i = 0; i < nbItems; i++) {
             this.itemList.push(new Item(this.width, this.heigth));
         }
+    }
+
+    restart()
+    {
+        this.agentList = [];
+        this.itemList = [];
+        this.duration = 0;
+        this.infos = {decomposors: 0, herbivors: 0, predators: 0, superpredators: 0};
+
+        this.generateMap();
     }
 
     show() {
@@ -46,6 +64,8 @@ class Environment {
 
         textSize(32);
         text('Duration : ' + this.duration, this.width/2, 50);
+
+        this.showInfos();
     }
 
     update()
@@ -76,6 +96,20 @@ class Environment {
             if(agent.getStatus() == Status.EATEN)
             {
                 this.agentList.splice(this.agentList.indexOf(agent), 1);
+                switch(agent.getType()) {
+                    case AgentType.DECOMPOSOR:
+                        this.infos.decomposors--;
+                        break;
+                    case AgentType.HERBIVOR:
+                        this.infos.herbivors--;
+                        break;
+                    case AgentType.PREDATOR:
+                        this.infos.predators--;
+                        break;
+                    case AgentType.SUPERPREDATOR:
+                        this.infos.superpredators--;
+                        break;
+                }
             }
             
         });
@@ -128,6 +162,21 @@ class Environment {
     exportToJson() {
 
         var scenario = {};
+    }
+
+    setControls() {
+        document.querySelector("#restart").addEventListener("click", () => {
+            this.restart();
+        });
+    }
+
+    showInfos()
+    {
+        document.querySelector("#nb-agents").innerHTML = this.agentList.length;
+        document.querySelector("#nb-decomposors").innerHTML = this.infos.decomposors;
+        document.querySelector("#nb-herbivors").innerHTML = this.infos.herbivors;
+        document.querySelector("#nb-predators").innerHTML = this.infos.predators;
+        document.querySelector("#nb-superpredators").innerHTML = this.infos.superpredators;
     }
 
     showGauges(x, y)
