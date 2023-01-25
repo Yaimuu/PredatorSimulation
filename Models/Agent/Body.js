@@ -189,4 +189,9 @@ class Body extends Entity {
     {
         this.showGauges = !this.showGauges;
     }
+
+    getVelocity()
+    {
+        return this.velocity;
+    }
 }

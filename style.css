@@ -7,9 +7,38 @@ canvas {
   display: block;
 }
 
-.parameters-container {
+.panel {
   position: absolute;
-  top: 5em;
-  right: 5em;
+  color: white;
+  padding: 0.5em;
+  background-color: black;
+}
+
+.panel > .title {
+  cursor: pointer;
+  user-select: none;
+}
+
+#controls {
+  top: 0;
+  right: 2.5em;
   width: 10%;
+}
+
+.arrow {
+  transition: 0.25s;
+}
+
+.content {
+  display: none;
+  padding: 10px;
+  transition: 0.25s;
+}
+
+.expanded .content {
+  display: block;
+}
+
+.expanded .arrow {
+  transform: rotate(90deg);
 }

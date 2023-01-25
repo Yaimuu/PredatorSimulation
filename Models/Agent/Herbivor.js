@@ -13,15 +13,24 @@ class Herbivor extends Agent {
         this.perception.forEach(target => {
             let targetPos = target.getPos();
             
-            if(target.getType() == AgentType.SUPERPREDATOR || target.getType() == AgentType.PREDATOR)
+            // SURVIE
+            if(target.getType() == AgentType.PREDATOR)
             {
                 this.flee(targetPos);
             }
+
+            // CHASSE
             if(target.getType() == AgentType.VEGETAL && this.isHungry())
             {
                 if(this.targetReached(target))
                     this.eat(target);
                 this.seek(targetPos);
+            }
+
+            // SYMBIOSE
+            if(target.getType() == AgentType.SUPERPREDATOR)
+            {
+                this.followTarget(target);
             }
 
             // if(this.fleeingRange > this.getPos().dist(targetPos))

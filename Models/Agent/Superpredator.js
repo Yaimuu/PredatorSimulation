@@ -13,6 +13,7 @@ class Superpredator extends Agent {
         this.perception.forEach(target => {
             let targetPos = target.getPos();
 
+            // CHASSE
             if(target.getType() == AgentType.PREDATOR && this.isHungry())
             {
                 if(this.targetReached(target))
@@ -20,7 +21,8 @@ class Superpredator extends Agent {
                 this.seek(targetPos);
             }
             
-            if(target.type == AgentType.SUPERPREDATOR)
+            // SYMBIOSE
+            if(target.type == AgentType.SUPERPREDATOR || target.type == AgentType.HERBIVOR)
             {
                 this.followTarget(targetPos);
                 if(this.fleeingRange > this.getPos().dist(targetPos))

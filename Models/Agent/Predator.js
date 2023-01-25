@@ -13,10 +13,13 @@ class Predator extends Agent {
         this.perception.forEach(target => {
             let targetPos = target.getPos();
             
+            // CHASSE
             if(target.getType() == AgentType.SUPERPREDATOR)
             {
                 this.flee(targetPos);
             }
+
+            // SURVIE
             if(target.getType() == AgentType.HERBIVOR && this.isHungry())
             {
                 if(this.targetReached(target))
@@ -24,7 +27,11 @@ class Predator extends Agent {
                 this.seek(targetPos);
             }
 
-            
+            // SYMBIOSE
+            if(target.getType() == AgentType.PREDATOR)
+            {
+                this.followTarget(target);
+            }
 
             // if(this.fleeingRange > this.getPos().dist(targetPos))
             // {

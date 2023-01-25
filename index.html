@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
@@ -10,15 +12,28 @@
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.20/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.20/dist/js/uikit-icons.min.js"></script>
-
+    <!-- Ace Library -->
+    <script src=" https://cdn.jsdelivr.net/npm/ace-builds@1.14.0/src-min-noconflict/ace.min.js "></script>
+    <link href=" https://cdn.jsdelivr.net/npm/ace-builds@1.14.0/css/ace.min.css " rel="stylesheet"/>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/14cf4e2e30.js" crossorigin="anonymous"></script>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
 
   </head>
   <body style="background-color: rgb(32, 32, 32);">
 
-    <div id="parameters-container">
-      
+    <div id="controls" class="panel">
+      <div class="title" onclick="toggleExpand(this)">
+        <i class='fas fa-angle-right arrow'></i>
+        <span>Controls</span>
+        
+      </div>
+
+      <div class="content">
+
+      </div>
     </div>
 
     

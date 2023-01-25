@@ -195,6 +195,11 @@ class Agent {
         
     }
 
+    show() 
+    {
+        this.body.show();
+    }
+
     update() {
         if(this.body.isMoving())
         {
@@ -242,6 +247,11 @@ class Agent {
 
     getReproduction() {
         return this.body.reproduction;
+    }
+
+    getVelocity()
+    {
+        return this.body.getVelocity();
     }
 
     addToPerception(target)
