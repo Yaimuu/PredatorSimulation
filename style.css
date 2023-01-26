@@ -20,7 +20,7 @@ canvas {
   color: white;
 }
 
-.panel > .title {
+.panel > .title, .sub-panel > .title {
   cursor: pointer;
   user-select: none;
 }
@@ -47,11 +47,11 @@ canvas {
   transition: 0.25s;
 }
 
-.expanded .content {
+.expanded > .content {
   display: block;
 }
 
-.expanded .arrow {
+.expanded > .title > .arrow {
   transform: rotate(90deg);
 }
 

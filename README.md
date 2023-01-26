@@ -64,4 +64,4 @@ Pour lancer la simulation :
 - Il est possible d'afficher et de cacher les jauges des Agents afin d'observer leur état
 - La simulation étant développée en javascript, les consignes spécifiques au développement en python ont été modifiées :
   - L'affichage du pourcentage des population est donc intégré dans la fenêtre "Infos"
-  - Le fichier ``scenario.json`` est remplacé par des inputs dans le paneau ``Controls`` (Pas encore mis en place)
+  - Le fichier ``scenario.json`` est remplacé par des inputs dans le paneau ``Controls``

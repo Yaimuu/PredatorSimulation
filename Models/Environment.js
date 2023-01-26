@@ -160,6 +160,68 @@ class Environment {
         document.querySelector("#restart").addEventListener("click", () => {
             this.restart();
         });
+
+        let controlsContent = document.querySelector("#controls-content");
+
+        for (const [key, value] of Object.entries(SimulationParameters)) {
+            console.log(`${key}: ${value}`);
+
+            controlsContent.innerHTML += this.createCategory(key);
+            let spaceLessKey = key.replace(/\s/g, '');
+            let subControls = document.querySelector(`#${spaceLessKey}-content`);
+
+            value.forEach(parameter => {
+                console.log(parameter);
+                let spaceLessLabel = parameter.label.replace(/\s/g, '');
+
+                subControls.innerHTML += this.createCategory(parameter.label, `${spaceLessKey}-${spaceLessLabel}-content`);
+                
+                let subParameterControls = document.querySelector(`#${spaceLessKey}-${spaceLessLabel}-content`);
+
+                this.createInput(
+                    subParameterControls,
+                    `min-${spaceLessKey}-${spaceLessLabel}`,
+                    "min",
+                    "number",
+                    parameter.min );
+                
+                this.createInput(
+                    subParameterControls,
+                    `max-${spaceLessKey}-${spaceLessLabel}`,
+                    "max",
+                    "number",
+                    parameter.max );
+                
+            });
+          }
+    }
+
+    createCategory(title, id=`${title.replace(/\s/g, '')}-content`)
+    {
+        let category = `<div class="sub-panel">
+            <div class="title" onclick="toggleExpand(this)">
+            <i class='fas fa-angle-right arrow'></i>
+            <span>${title}</span>
+            </div>
+    
+            <div id="${id}" class="content">
+                
+            </div>
+        </div>`;
+
+        return category;
+    }
+
+    createInput(parent, id, labelText, type, defaultValue) {
+        let label = document.createElement("label");
+        label.setAttribute("for", id);
+        label.innerHTML = labelText;
+        let input = document.createElement("input");
+        input.setAttribute("type", type);
+        input.setAttribute("id", id);
+        input.setAttribute("value", defaultValue);
+        parent.appendChild(label);
+        parent.appendChild(input);
     }
 
     showInfos()

@@ -28,11 +28,13 @@
       <div class="title" onclick="toggleExpand(this)">
         <i class='fas fa-angle-right arrow'></i>
         <span>Controls</span>
-        
       </div>
 
       <div class="content">
           <button id="restart" class="uk-button uk-button-default">Restart</button>
+            <div id="controls-content">
+              
+            </div>
       </div>
     </div>
 
@@ -48,30 +50,33 @@
            <span id="nb-agents"></span> <span>Agents</span>
         </h3>
         <div>
-          <span>Nb Décomposeurs</span> <span id="nb-decomposors"></span>
+          <span>Decomposors : </span> <span id="nb-decomposors"></span>
           <div class="percentage-container">
             <div id="percent-decomposors" class="percentage"></div>
           </div>
         </div>
         <div>
-          <span>Nb Herbivores</span> <span id="nb-herbivors"></span>
+          <span>Herbivores : </span> <span id="nb-herbivors"></span>
           <div class="percentage-container">
             <div id="percent-herbivors" class="percentage"></div>
           </div>
         </div>
         <div>
-          <span>Nb Prédateurs</span> <span id="nb-predators"></span> 
+          <span>Predators : </span> <span id="nb-predators"></span> 
           <div class="percentage-container">
             <div id="percent-predators" class="percentage"></div>
           </div>
         </div>
         <div>
-          <span>Nb Super Prédateurs</span> <span id="nb-superpredators"></span> 
+          <span>Super Predators : </span> <span id="nb-superpredators"></span> 
           <div class="percentage-container">
             <div id="percent-superpredators" class="percentage"></div>
           </div>
         </div>
 
+        <div>
+          <a href="https://github.com/Yaimuu/PredatorSimulation">Source code</a>
+        </div>
       </div>
     </div>
 

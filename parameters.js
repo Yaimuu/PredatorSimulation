@@ -1,30 +1,38 @@
 var SimulationParameters = {
-    "duréeSimu": 600,
-    bodies: [
-        {label: "mass", value: 100, type:"range", min:0, max: 200},
+    Decomposors: [
+        {label: "velocity", min:1, max: 5},
+        {label: "acceleration", min:1, max: 5},
+        {label: "hunger", min:400, max: 500},
+        {label: "tired", min:100, max: 200},
+        {label: "life span", min:1000, max: 1500},
+        {label: "reproduction", min:50, max: 100},
     ],
-    
-    
+    Herbivores: [
+        {label: "velocity", min:1, max: 5},
+        {label: "acceleration", min:1, max: 5},
+        {label: "hunger", min:400, max: 500},
+        {label: "tired", min:100, max: 200},
+        {label: "life span", min:1000, max: 1500},
+        {label: "reproduction", min:50, max: 100},
+    ],
+    Predators: [
+        {label: "velocity", min:1, max: 5},
+        {label: "acceleration", min:1, max: 5},
+        {label: "hunger", min:400, max: 500},
+        {label: "tired", min:100, max: 200},
+        {label: "life span", min:1000, max: 1500},
+        {label: "reproduction", min:50, max: 100},
+    ],
+    Superpredators: [
+        {label: "velocity", min:1, max: 5},
+        {label: "acceleration", min:1, max: 5},
+        {label: "hunger", min:400, max: 500},
+        {label: "tired", min:100, max: 200},
+        {label: "life span", min:1000, max: 1500},
+        {label: "reproduction", min:50, max: 100},
+    ],
 };
-
-function createInputs() {
-    let paramContainer = document.querySelector("#controls");
-
-    for (const [key, value] of Object.entries(SimulationParameters)) {
-        console.log(`${key}: ${value}`);
-        let inputDiv = document.createElement("div");
-
-        let label = document.createElement("label");
-        label.innerHTML = key;
-        inputDiv.appendChild(label);
-
-
-        paramContainer.appendChild(inputDiv);
-      }
-}
 
 function toggleExpand(title) {
     title.parentNode.classList.toggle("expanded");
 }
-
-// createInputs();
