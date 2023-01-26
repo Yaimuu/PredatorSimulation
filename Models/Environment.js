@@ -160,6 +160,11 @@ class Environment {
         document.querySelector("#restart").addEventListener("click", () => {
             this.restart();
         });
+        document.querySelector("#duration-max").value = this.maxDuration;
+        document.querySelector("#duration-max").addEventListener("change", (e) => {
+            console.log(e.target);
+            this.maxDuration = e.target.value;
+        });
 
         let controlsContent = document.querySelector("#controls-content");
 
