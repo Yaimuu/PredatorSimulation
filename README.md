@@ -14,7 +14,7 @@ Pour lancer la simulation :
 
 - Decomposeurs
 
-![](Documentation\Images\Decomposor.png)
+![](Documentation/Images/Decomposor.png)
 
 > Comportements
 >
@@ -22,7 +22,7 @@ Pour lancer la simulation :
 
 - Herbivores
 
-![](Documentation\Images\Herbivore.png)
+![](Documentation/Images/Herbivore.png)
 
 > Comportements
 >
@@ -32,7 +32,7 @@ Pour lancer la simulation :
 
 - Prédateurs
 
-![](Documentation\Images\Predator.png)
+![](Documentation/Images/Predator.png)
 
 > Comportements
 >
@@ -42,7 +42,7 @@ Pour lancer la simulation :
 
 - Super Prédateurs
 
-![](Documentation\Images\Superpredator.png)
+![](Documentation/Images/Superpredator.png)
 
 > Comportements
 >
