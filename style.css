@@ -1,3 +1,4 @@
+/* ---- GENERAL ---- */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,6 +8,7 @@ canvas {
   display: block;
 }
 
+/* ---- PANELS ---- */
 .panel {
   position: absolute;
   color: white;
@@ -51,4 +53,38 @@ canvas {
 
 .expanded .arrow {
   transform: rotate(90deg);
+}
+
+/* ---- INFOS ---- */
+
+.percentage-container {
+  width: 50%;
+  border: 2px black solid;
+  height: 1.5em;
+}
+
+.percentage {
+  /* width: 100%; */
+  height: 100%;
+  background-color: black;
+}
+
+#percent-decomposors {
+  width: 0%;
+  background-color: yellow;
+}
+
+#percent-herbivors {
+  width: 0%;
+  background-color: green;
+}
+
+#percent-predators {
+  width: 0%;
+  background-color: darkred;
+}
+
+#percent-superpredators {
+  width: 0%;
+  background-color: red;
 }

@@ -154,14 +154,6 @@ class Environment {
             });
             this.show();
         }
-            
-
-        
-    }
-
-    exportToJson() {
-
-        var scenario = {};
     }
 
     setControls() {
@@ -173,10 +165,18 @@ class Environment {
     showInfos()
     {
         document.querySelector("#nb-agents").innerHTML = this.agentList.length;
+
         document.querySelector("#nb-decomposors").innerHTML = this.infos.decomposors;
+        document.querySelector("#percent-decomposors").style.width = (this.infos.decomposors/this.agentList.length * 100) + "%";
+
         document.querySelector("#nb-herbivors").innerHTML = this.infos.herbivors;
+        document.querySelector("#percent-herbivors").style.width = (this.infos.herbivors/this.agentList.length * 100) + "%";
+
         document.querySelector("#nb-predators").innerHTML = this.infos.predators;
+        document.querySelector("#percent-predators").style.width = (this.infos.predators/this.agentList.length * 100) + "%";
+
         document.querySelector("#nb-superpredators").innerHTML = this.infos.superpredators;
+        document.querySelector("#percent-superpredators").style.width = (this.infos.superpredators/this.agentList.length * 100) + "%";
     }
 
     showGauges(x, y)

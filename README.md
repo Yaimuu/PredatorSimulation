@@ -49,9 +49,19 @@ Pour lancer la simulation :
 > - Mangent les Prédateurs
 > - Se rapprochent des Herbivores pour chasser les Prédateurs
 
+## Jauges
 
-# Bonus
+![](Documentation/Images/Jauges.png)
+
+- **Rouge** : Reproduction de l'agent, il se reproduit si la jauge arrive au bout, lorsqu'il mange, la jauge augmente
+- **Bleue** : Fatigue de l'agent, il se repose si la jauge arrive au bout
+- **Blanc** : Age de l'agent, il meure si la jauge arrive au bout
+- **Jaune** : Faim de l'agent, il meure si la jauge arrive au bout, lorsqu'il mange, la jauge diminue
+
+# Informationss complémentaires
 
 - Le déplacement aléatoire des agents se fait à l'aide du bruit de Perlin afin que leur déplacements soit plus crédible et fluide
 - Il est possible d'afficher et de cacher les jauges des Agents afin d'observer leur état
-- Lorsqu'un agent est fatigué, il s'arrête et un cercle jaune indique son état
+- La simulation étant développée en javascript, les consignes spécifiques au développement en python ont été modifiées :
+  - L'affichage du pourcentage des population est donc intégré dans la fenêtre "Infos"
+  - Le fichier ``scenario.json`` est remplacé par des inputs dans le paneau ``Controls`` (Pas encore mis en place)
